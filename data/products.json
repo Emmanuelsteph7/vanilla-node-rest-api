@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Airpods",
+    "description": "This is good for music",
+    "proce": 99
+  },
+  {
+    "id": 2,
+    "name": "iPhone",
+    "description": "This is a good phone",
+    "proce": 199
+  },
+  {
+    "id": 3,
+    "name": "Airpods",
+    "description": "This is good for music",
+    "proce": 99
+  },
+  {
+    "id": 4,
+    "name": "Airpods",
+    "description": "This is good for music",
+    "proce": 99
+  },
+  {
+    "id": 5,
+    "name": "Airpods",
+    "description": "This is good for music",
+    "proce": 99
+  }
+]
