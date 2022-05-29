@@ -5,3 +5,11 @@ exports.findAll = () => {
     resolve(products);
   });
 };
+
+exports.findById = (id) => {
+  return new Promise((resolve, reject) => {
+    const filteredProduct = products.find((item) => item.id === Number(id));
+
+    resolve(filteredProduct);
+  });
+};
