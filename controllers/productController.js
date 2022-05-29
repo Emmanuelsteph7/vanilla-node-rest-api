@@ -14,11 +14,12 @@ exports.getProducts = async (req, res) => {
     );
   } catch (error) {
     console.log(error);
-    res.writeHead(404, { "Content-Type": "application/json" });
+    console.log(error);
+    res.writeHead(500, { "Content-Type": "application/json" });
     res.end(
       JSON.stringify({
         success: false,
-        message: "Error fetching products.",
+        message: error,
       })
     );
   }
@@ -75,7 +76,16 @@ exports.createProduct = async (req, res) => {
         data: newProduct,
       })
     );
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+    res.writeHead(500, { "Content-Type": "application/json" });
+    res.end(
+      JSON.stringify({
+        success: false,
+        message: error,
+      })
+    );
+  }
 };
 
 exports.updateProduct = async (req, res, id) => {
@@ -90,12 +100,44 @@ exports.updateProduct = async (req, res, id) => {
 
     const newProduct = await Product.update(productBody);
 
-    res.writeHead(201, { "Content-Type": "application/json" });
+    res.writeHead(200, { "Content-Type": "application/json" });
     res.end(
       JSON.stringify({
         success: true,
         data: newProduct,
       })
     );
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+    res.writeHead(500, { "Content-Type": "application/json" });
+    res.end(
+      JSON.stringify({
+        success: false,
+        message: error,
+      })
+    );
+  }
+};
+
+exports.deleteProduct = async (req, res, id) => {
+  try {
+    await Product.delete(id);
+
+    res.writeHead(200, { "Content-Type": "application/json" });
+    res.end(
+      JSON.stringify({
+        success: true,
+        message: "Product deleted.",
+      })
+    );
+  } catch (error) {
+    console.log(error);
+    res.writeHead(500, { "Content-Type": "application/json" });
+    res.end(
+      JSON.stringify({
+        success: false,
+        message: error,
+      })
+    );
+  }
 };

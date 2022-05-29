@@ -36,3 +36,13 @@ exports.update = (product) => {
     resolve(product);
   });
 };
+
+exports.delete = (id) => {
+  return new Promise((resolve, reject) => {
+    const productIndex = products.findIndex((item) => item.id === id);
+
+    products.splice(productIndex, 1);
+    addToFile("./data/products.json", products);
+    resolve("Product deleted");
+  });
+};

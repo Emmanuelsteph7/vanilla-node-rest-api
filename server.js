@@ -5,6 +5,7 @@ const {
   getProduct,
   createProduct,
   updateProduct,
+  deleteProduct,
 } = require("./controllers/productController");
 
 const server = http.createServer((req, res) => {
@@ -23,6 +24,9 @@ const server = http.createServer((req, res) => {
   } else if (pathname.match(singleProductRegex) && method === "PUT") {
     const id = pathname.split("/")[3];
     updateProduct(req, res, id);
+  } else if (pathname.match(singleProductRegex) && method === "DELETE") {
+    const id = pathname.split("/")[3];
+    deleteProduct(req, res, id);
   } else {
     res.writeHead(404, {
       "Content-Type": "application/json",
