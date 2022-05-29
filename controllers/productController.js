@@ -85,3 +85,33 @@ exports.createProduct = async (req, res) => {
     });
   } catch (error) {}
 };
+
+exports.updateProduct = async (req, res, id) => {
+  try {
+    const product = await Product.findById(id);
+    let body = "";
+
+    req.on("data", (chunk) => {
+      body += chunk.toString();
+    });
+
+    req.on("end", async () => {
+      const requestBody = JSON.parse(body);
+
+      const productBody = {
+        ...product,
+        ...requestBody,
+      };
+
+      const newProduct = await Product.update(productBody);
+
+      res.writeHead(201, { "Content-Type": "application/json" });
+      res.end(
+        JSON.stringify({
+          success: true,
+          data: newProduct,
+        })
+      );
+    });
+  } catch (error) {}
+};
