@@ -1,4 +1,5 @@
 const Product = require("../models/products");
+const { getPostBody } = require("../utils/getPostBody");
 
 exports.getProducts = async (req, res) => {
   try {
@@ -58,60 +59,43 @@ exports.getProduct = async (req, res, id) => {
 
 exports.createProduct = async (req, res) => {
   try {
-    let body = "";
+    let { name, description, price } = await getPostBody(req);
+    const productBody = {
+      name,
+      description,
+      price,
+    };
 
-    req.on("data", (chunk) => {
-      body += chunk.toString();
-    });
+    const newProduct = await Product.create(productBody);
 
-    req.on("end", async () => {
-      const requestBody = JSON.parse(body);
-
-      const productBody = {
-        name: requestBody.name,
-        description: requestBody.description,
-        price: requestBody.price,
-      };
-
-      const newProduct = await Product.create(productBody);
-
-      res.writeHead(201, { "Content-Type": "application/json" });
-      res.end(
-        JSON.stringify({
-          success: true,
-          data: newProduct,
-        })
-      );
-    });
+    res.writeHead(201, { "Content-Type": "application/json" });
+    res.end(
+      JSON.stringify({
+        success: true,
+        data: newProduct,
+      })
+    );
   } catch (error) {}
 };
 
 exports.updateProduct = async (req, res, id) => {
   try {
     const product = await Product.findById(id);
-    let body = "";
+    let body = await getPostBody(req);
 
-    req.on("data", (chunk) => {
-      body += chunk.toString();
-    });
+    const productBody = {
+      ...product,
+      ...body,
+    };
 
-    req.on("end", async () => {
-      const requestBody = JSON.parse(body);
+    const newProduct = await Product.update(productBody);
 
-      const productBody = {
-        ...product,
-        ...requestBody,
-      };
-
-      const newProduct = await Product.update(productBody);
-
-      res.writeHead(201, { "Content-Type": "application/json" });
-      res.end(
-        JSON.stringify({
-          success: true,
-          data: newProduct,
-        })
-      );
-    });
+    res.writeHead(201, { "Content-Type": "application/json" });
+    res.end(
+      JSON.stringify({
+        success: true,
+        data: newProduct,
+      })
+    );
   } catch (error) {}
 };

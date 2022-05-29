@@ -45,6 +45,12 @@
     "id": "bf4db4e4-1031-4c3a-b142-9c37c08ebe87",
     "name": "iPhone",
     "description": "This is a good phone",
-    "price": 280
+    "price": 300
+  },
+  {
+    "id": "e7843674-8677-415f-a499-87a278576ec5",
+    "name": "Home Theatre",
+    "description": "This is good for the house",
+    "price": 300
   }
 ]
