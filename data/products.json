@@ -3,30 +3,54 @@
     "id": 1,
     "name": "Airpods",
     "description": "This is good for music",
-    "proce": 99
+    "price": 99
   },
   {
     "id": 2,
     "name": "iPhone",
     "description": "This is a good phone",
-    "proce": 199
+    "price": 199
   },
   {
     "id": 3,
     "name": "Airpods",
     "description": "This is good for music",
-    "proce": 99
+    "price": 99
   },
   {
     "id": 4,
     "name": "Airpods",
     "description": "This is good for music",
-    "proce": 99
+    "price": 99
   },
   {
     "id": 5,
     "name": "Airpods",
     "description": "This is good for music",
-    "proce": 99
+    "price": 99
+  },
+  {
+    "id": 11,
+    "name": "iPhone",
+    "description": "This is a good phone",
+    "price": 199
+  },
+  {
+    "id": 12,
+    "name": "iPhone",
+    "description": "This is a good phone",
+    "price": 199
+  },
+  {
+    "id": "bf4db4e4-1031-4c3a-b142-9c37c08ebe87",
+    "name": "iPhone",
+    "description": "This is a good phone",
+    "price": 199
+  },
+  {
+    "id": "388aada3-26b3-49aa-a4ed-19e06320285c",
+    "name": "Samsung",
+    "description": "This is a samsung phone",
+    "price": 28
   }
 ]

@@ -1,6 +1,10 @@
 const http = require("http");
 const fs = require("fs");
-const { getProducts, getProduct } = require("./controllers/productController");
+const {
+  getProducts,
+  getProduct,
+  createProduct,
+} = require("./controllers/productController");
 
 const server = http.createServer((req, res) => {
   const pathname = req.url;
@@ -13,6 +17,8 @@ const server = http.createServer((req, res) => {
   } else if (pathname.match(singleProductRegex) && method === "GET") {
     const id = pathname.split("/")[3];
     getProduct(req, res, id);
+  } else if (pathname === "/api/product" && method === "POST") {
+    createProduct(req, res);
   } else {
     res.writeHead(404, {
       "Content-Type": "application/json",

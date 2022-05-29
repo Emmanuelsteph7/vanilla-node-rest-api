@@ -55,3 +55,33 @@ exports.getProduct = async (req, res, id) => {
     );
   }
 };
+
+exports.createProduct = async (req, res) => {
+  try {
+    let body = "";
+
+    req.on("data", (chunk) => {
+      body += chunk.toString();
+    });
+
+    req.on("end", async () => {
+      const requestBody = JSON.parse(body);
+
+      const productBody = {
+        name: requestBody.name,
+        description: requestBody.description,
+        price: requestBody.price,
+      };
+
+      const newProduct = await Product.create(productBody);
+
+      res.writeHead(201, { "Content-Type": "application/json" });
+      res.end(
+        JSON.stringify({
+          success: true,
+          data: newProduct,
+        })
+      );
+    });
+  } catch (error) {}
+};
